@@ -7,25 +7,23 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>iOS Notification</title>
   <style>
-    /* Default (light mode) styles */
     body {
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #f5f5f7;
-      color: #000;
+      background: #f5f5f7;
       display: flex;
       flex-direction: column;
       align-items: center;
       cursor: pointer;
-      min-height: 150vh;
+      min-height: 150vh; /* allows scroll to trigger Safari URL bar hide */
     }
 
     .time {
       font-size: 56px;
       font-weight: 600;
       margin-top: 50px;
-      color: inherit;
+      color: #000;
     }
 
     .notification-box {
@@ -71,7 +69,7 @@
     .notification-title {
       font-size: 15px;
       font-weight: 600;
-      color: inherit;
+      color: #333;
     }
 
     .notification-time {
@@ -82,7 +80,7 @@
     .notification-message {
       margin-top: 4px;
       font-size: 14px;
-      color: inherit;
+      color: #555;
     }
 
     .action-sheet {
@@ -114,40 +112,6 @@
       background-color: #fff;
       color: #ff3b30;
       font-weight: 600;
-    }
-
-    /* Dark mode styles */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #000;
-        color: #fff;
-      }
-
-      .notification-box,
-      .action-sheet,
-      .action.cancel {
-        background-color: #1c1c1e;
-        color: #fff;
-      }
-
-      .notification-icon {
-        background: #2c2c2e;
-      }
-
-      .notification-title,
-      .notification-time,
-      .notification-message,
-      .action {
-        color: #fff;
-      }
-
-      .action {
-        border-top: 1px solid #444;
-      }
-
-      .action.cancel {
-        color: #ff453a;
-      }
     }
   </style>
 </head>
