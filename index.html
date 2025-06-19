@@ -22,4 +22,184 @@
     }
 
     .time {
-      font-si
+      font-size: 56px;
+      font-weight: 600;
+      margin-top: 50px;
+      color: inherit;
+    }
+
+    .notification-box {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+      width: 90%;
+      max-width: 400px;
+      padding: 16px;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .notification-icon {
+      width: 40px;
+      height: 40px;
+      background: #e5e5ea;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .notification-icon img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .notification-content {
+      flex: 1;
+    }
+
+    .notification-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .notification-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: inherit;
+    }
+
+    .notification-time {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .notification-message {
+      margin-top: 4px;
+      font-size: 14px;
+      color: inherit;
+    }
+
+    .action-sheet {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .action {
+      padding: 15px;
+      text-align: center;
+      font-size: 17px;
+      color: #007aff;
+      border-top: 1px solid #dcdcdc;
+      background-color: #fff;
+    }
+
+    .action:first-child {
+      border-top: none;
+    }
+
+    .action.cancel {
+      margin-top: 10px;
+      border-radius: 14px;
+      background-color: #fff;
+      color: #ff3b30;
+      font-weight: 600;
+    }
+
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+
+      .notification-box,
+      .action-sheet,
+      .action.cancel {
+        background-color: #1c1c1e;
+        color: #fff;
+      }
+
+      .notification-icon {
+        background: #2c2c2e;
+      }
+
+      .notification-title,
+      .notification-time,
+      .notification-message,
+      .action {
+        color: #fff;
+      }
+
+      .action {
+        border-top: 1px solid #444;
+      }
+
+      .action.cancel {
+        color: #ff453a;
+      }
+    }
+  </style>
+</head>
+<body onclick="makeCall()">
+
+  <div class="time" id="currentTime">--:--</div>
+
+  <div class="notification-box">
+    <div class="notification-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
+    </div>
+    <div class="notification-content">
+      <div class="notification-header">
+        <div class="notification-title">Apple</div>
+        <div class="notification-time">Now</div>
+      </div>
+      <div class="notification-message">
+        A $354.87 charge has been made to your account. If this wasn't you, contact Apple Support at +1 866‑697‑6955.
+      </div>
+    </div>
+  </div>
+
+  <div class="action-sheet">
+    <div class="action">Reply</div>
+    <div class="action">Ignore</div>
+  </div>
+
+  <div class="action cancel">Cancel</div>
+
+  <audio id="notifSound" src="https://notificationsounds.com/storage/sounds/file-sounds-1152-pristine.mp3" preload="auto"></audio>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
+    }
+
+    function playSoundOnce() {
+      const audio = document.getElementById("notifSound");
+      audio.play().catch((e) => console.log("Audio play blocked:", e));
+      document.body.removeEventListener("click", playSoundOnce);
+    }
+
+    function makeCall() {
+      window.location.href = "tel:+18666976955";
+    }
+
+    updateTime();
+    setInterval(updateTime, 60000);
+    document.body.addEventListener("click", playSoundOnce);
+  </script>
+</body>
+</html>
